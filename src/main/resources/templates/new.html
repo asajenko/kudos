@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script>
+        function customReset()
+        {
+            document.getElementById("from").value = "";
+            document.getElementById("to").value = "";
+            document.getElementById("content").value = "";
+        }
+    </script>
+
+</head>
+<body>
+    <p>Welcome!</p>
+    <form action="#" th:action="@{/saveKudos}" th:object="${kudos}" method="post">
+        <p>
+            <label for="from">From:</label>
+            <input id="from" type="text" th:field="*{from}"/>
+        </p>
+        <p>
+            <label for="to">To:</label>
+            <input id="to" type="text" th:field="*{to}"/>
+        </p>
+        <p>
+            <label for="content">Content:</label>
+            <textarea id="content" th:field="*{content}"></textarea>
+        </p>
+        <p><input type="submit" value="Submit" /> <input type="button" name="reset" value="Reset" onclick="customReset();"/>
+    </form>
+    List all kudos:
+    <p th:each="kudosEl : ${kudosList}">
+        <label for="listFrom">From:</label>
+        <span id="listFrom" th:text="${kudosEl.from}"></span>
+        <label for="listTo">To:</label>
+        <span id="listTo" th:text="${kudosEl.to}"></span>
+        <label for="listContent">Content:</label>
+        <span id="listContent" th:text="${kudosEl.content}"></span>
+        <label for="listDate">Create date:</label>
+        <span id="listDate" th:text="${kudosEl.createDate}"></span>
+    </p>
+</body>
+</html>
