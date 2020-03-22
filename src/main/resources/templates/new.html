@@ -27,7 +27,12 @@
         </p>
         <p><input type="submit" value="Submit" /> <input type="button" name="reset" value="Reset" onclick="customReset();"/>
     </form>
-    List all kudos:
+    <form action="#" th:action="@{/my}" th:object="${search}">
+        <label for="search">Search:</label>
+        <input type="text" name="search" id="search"/>
+        <input type="submit" value="Search"/>
+    </form>
+    List in this interval:
     <p th:each="kudosEl : ${kudosList}">
         <label for="listFrom">From:</label>
         <span id="listFrom" th:text="${kudosEl.who}"></span>

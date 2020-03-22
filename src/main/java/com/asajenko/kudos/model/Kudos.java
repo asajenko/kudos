@@ -6,7 +6,7 @@ import java.util.Date;
 @Entity
 public class Kudos {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
     @Column
