@@ -1,28 +1,45 @@
 package com.asajenko.kudos.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Kudos {
 
-    private Date createDate;
-    private String from;
+    @GeneratedValue
+    @Id
+    private Long id;
+    @Column
+    private Date when;
+    @Column
+    private String who;
+    @Column
     private String to;
+    @Column
     private String content;
 
-    public Date getCreateDate() {
-        return createDate;
+    public Long getId() {
+        return id;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getFrom() {
-        return from;
+    public Date getWhen() {
+        return when;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setWhen(Date when) {
+        this.when = when;
+    }
+
+    public String getWho() {
+        return who;
+    }
+
+    public void setWho(String who) {
+        this.who = who;
     }
 
     public String getTo() {
@@ -44,8 +61,9 @@ public class Kudos {
     @Override
     public String toString() {
         return "Kudos{" +
-                "createDate=" + createDate +
-                ", from='" + from + '\'' +
+                "id=" + id +
+                ", createDate=" + when +
+                ", from='" + who + '\'' +
                 ", to='" + to + '\'' +
                 ", content='" + content + '\'' +
                 '}';
