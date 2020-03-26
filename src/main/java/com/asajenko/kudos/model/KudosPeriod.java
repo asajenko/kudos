@@ -17,6 +17,15 @@ public class KudosPeriod {
     @Column
     private KudosPeriodType type;
 
+    public KudosPeriod() {
+    }
+
+    public KudosPeriod(Kudos k, Period period, KudosPeriodType type) {
+        this.kudos = k;
+        this.period = period;
+        this.type = type;
+    }
+
     public Long getId() {
         return id;
     }

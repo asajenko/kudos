@@ -2,6 +2,7 @@ package com.asajenko.kudos.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Period {
@@ -15,6 +16,8 @@ public class Period {
     private Date stopTime;
     @Column
     private boolean finish;
+    @OneToMany
+    private List<KudosPeriod> kudosPeriod;
 
     public Long getId() {
         return id;
