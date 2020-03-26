@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    Win kudos:
+    <p th:each="kudosEl : ${winKudos}">
+        <label for="listFrom">From:</label>
+        <span id="listFrom" th:text="${kudosEl.who}"></span>
+        <label for="listTo">To:</label>
+        <span id="listTo" th:text="${kudosEl.to}"></span>
+        <label for="listContent">Content:</label>
+        <span id="listContent" th:text="${kudosEl.content}"></span>
+        <label for="listDate">Create date:</label>
+        <span id="listDate" th:text="${kudosEl.when}"></span>
+    </p>
+    Read kudos:
+    <p th:each="kudosEl : ${readKudos}">
+        <label for="listFrom">From:</label>
+        <span id="listFrom" th:text="${kudosEl.who}"></span>
+        <label for="listTo">To:</label>
+        <span id="listTo" th:text="${kudosEl.to}"></span>
+        <label for="listContent">Content:</label>
+        <span id="listContent" th:text="${kudosEl.content}"></span>
+        <label for="listDate">Create date:</label>
+        <span id="listDate" th:text="${kudosEl.when}"></span>
+    </p>
+    List all kudos in period:
+    <p th:each="kudosEl : ${kudosList}">
+        <label for="listFrom">From:</label>
+        <span id="listFrom" th:text="${kudosEl.who}"></span>
+        <label for="listTo">To:</label>
+        <span id="listTo" th:text="${kudosEl.to}"></span>
+        <label for="listContent">Content:</label>
+        <span id="listContent" th:text="${kudosEl.content}"></span>
+        <label for="listDate">Create date:</label>
+        <span id="listDate" th:text="${kudosEl.when}"></span>
+    </p>
+</body>
+</html>
