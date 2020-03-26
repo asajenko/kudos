@@ -2,6 +2,7 @@ package com.asajenko.kudos.controller;
 
 import com.asajenko.kudos.model.Kudos;
 import com.asajenko.kudos.model.Period;
+import com.asajenko.kudos.service.KudosPeriodType;
 import com.asajenko.kudos.service.KudosService;
 import com.asajenko.kudos.service.PeriodService;
 import com.asajenko.kudos.service.SaveKudosService;
@@ -59,8 +60,12 @@ public class KudosController {
         Period period = periodService.finishPeriod();
         List<Kudos> allKudosForPeriodTime = kudosService.getAllKudosForPeriodTime(period);
         model.addAttribute("kudosList", List.copyOf(allKudosForPeriodTime));
-        model.addAttribute("winKudos", kudosService.randomKudos(2, allKudosForPeriodTime));
-        model.addAttribute("readKudos", kudosService.randomKudos(3, allKudosForPeriodTime));
+        List<Kudos> winKudos = kudosService.randomKudos(2, allKudosForPeriodTime);
+        kudosService.saveKudosPeriod(period, winKudos, KudosPeriodType.WIN);
+        model.addAttribute("winKudos", winKudos);
+        List<Kudos> readKudos = kudosService.randomKudos(3, allKudosForPeriodTime);
+        kudosService.saveKudosPeriod(period, readKudos, KudosPeriodType.READ);
+        model.addAttribute("readKudos", readKudos);
         return "lottery";
     }
 }

@@ -17,6 +17,8 @@ public class Kudos {
     private String to;
     @Column
     private String content;
+    @OneToOne
+    private KudosPeriod kudosPeriod;
 
     public Long getId() {
         return id;
@@ -56,6 +58,14 @@ public class Kudos {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public KudosPeriod getKudosPeriod() {
+        return kudosPeriod;
+    }
+
+    public void setKudosPeriod(KudosPeriod kudosPeriod) {
+        this.kudosPeriod = kudosPeriod;
     }
 
     @Override
