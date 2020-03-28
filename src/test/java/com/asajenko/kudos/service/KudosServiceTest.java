@@ -22,7 +22,56 @@ class KudosServiceTest {
     KudosRepository kudosRepositoryMock;
 
     @Test
-    void randomKudos() {
+    void randomKudos_success() {
+        List<Kudos> kudosList = Lists.list(new Kudos(), new Kudos(), new Kudos(), new Kudos());
+
+        KudosService kudosService = new KudosService(null, null);
+
+        assertEquals(4, kudosList.size());
+        List<Kudos> firstLottery = kudosService.randomKudos(1, kudosList);
+        assertEquals(3, kudosList.size());
+        List<Kudos> secondLottery = kudosService.randomKudos(2, kudosList);
+        assertEquals(1, kudosList.size());
+        assertFalse(secondLottery.containsAll(firstLottery));
+        assertFalse(kudosList.containsAll(firstLottery));
+        assertFalse(kudosList.containsAll(secondLottery));
+        assertEquals(1, firstLottery.size());
+        assertEquals(2, secondLottery.size());
+    }
+
+    @Test
+    void randomKudos_secondLotteryCountGreaterThanAllKudosList_success() {
+        List<Kudos> kudosList = Lists.list(new Kudos(), new Kudos(), new Kudos(), new Kudos());
+
+        KudosService kudosService = new KudosService(null, null);
+
+        assertEquals(4, kudosList.size());
+        List<Kudos> firstLottery = kudosService.randomKudos(1, kudosList);
+        assertEquals(3, kudosList.size());
+        List<Kudos> secondLottery = kudosService.randomKudos(8, kudosList);
+        assertEquals(0, kudosList.size());
+        assertEquals(1, firstLottery.size());
+        assertEquals(3, secondLottery.size());
+    }
+
+    @Test
+    void randomKudos_kudosListIsNull_success() {
+        List<Kudos> kudosList = null;
+
+        KudosService kudosService = new KudosService(null, null);
+
+        List<Kudos> firstLottery = kudosService.randomKudos(1, kudosList);
+        assertNull(firstLottery);
+    }
+
+    @Test
+    void randomKudos_kudosListIsEmpty_success() {
+        List<Kudos> kudosList = Lists.emptyList();
+
+        KudosService kudosService = new KudosService(null, null);
+
+        List<Kudos> firstLottery = kudosService.randomKudos(1, kudosList);
+        assertNull(firstLottery);
     }
 
     @Test
